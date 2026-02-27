@@ -1,0 +1,86 @@
+esphome:
+  name: levoit-air-purifier-core-300s
+  friendly_name: Levoit Air Purifier Core 300s
+
+esp32:
+  variant: esp32
+  framework:
+    type: esp-idf
+    sdkconfig_options:
+      CONFIG_FREERTOS_UNICORE: y
+
+external_components:
+  - source: github://acvigue/esphome-levoit-purifier
+    components: [levoit]
+
+logger:
+  baud_rate: 115200
+
+# Enable Home Assistant API
+api:
+
+ota:
+  - platform: esphome
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  ap:
+    ssid: "$friendly_name Hotspot"
+
+captive_portal:
+
+uart:
+  tx_pin: GPIO17
+  rx_pin: GPIO16
+  baud_rate: 115200
+
+levoit:
+  id: levoit1
+#  model: core300s  # default core300s, note: this config also works for core400s
+#  command_delay: 300 # default 300
+#  command_timeout: 200 # default 200
+#  status_poll_seconds: 0 # default 0, not needed if you get auto status msgs
+
+
+fan:
+  - platform: levoit
+    name: Levoit Purifier
+
+sensor:
+  # Uptime sensor.
+  - platform: uptime
+    name: Uptime
+
+  # WiFi Signal sensor.
+  - platform: wifi_signal
+    name: WiFi Signal
+    update_interval: 60s
+
+  # PM2.5 sensor
+  - platform: levoit
+    pm_2_5:
+      name: PM2.5
+    air_quality:
+      name: Air Quality Index
+
+switch:
+  - platform: levoit
+    display_lock:
+      name: "Display Lock"
+    display_on:
+      name: "Display On"
+    power:
+      name: "Master Power"
+
+button:
+  - platform: levoit
+    filter_reset:
+      name: "Filter Reset"
+
+select:
+  - platform: levoit
+    auto_mode:
+      name: "Auto Mode"
+    fan_mode:
+      name: "Fan Mode"
