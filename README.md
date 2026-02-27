@@ -52,4 +52,4 @@ $ uv run esptool read-flash 0 ALL levoit.bin
 ![](./images/uart1.jpg)
 ![](./images/uart2.jpg)
 ![](./images/uart1-wiring.jpg)
-![](./images/uart2-wiring.jpg)
+![](./images/uart2-wiring.png)
