@@ -4,6 +4,7 @@
 
 Here lies my failed attempt to connect to and flash my levoit core 300s air purifier
 
+- https://www.jbhifi.com.au/products/levoit-core-300s-air-purifier
 - https://devices.esphome.io/devices/levoit-core-300s/
 - https://github.com/acvigue/esphome-levoit-air-purifier
 - https://esphome.io/guides/physical_device_connection/
